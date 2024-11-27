@@ -13,15 +13,18 @@ const[id,setId]=useState("")
     //   .then((response) => response.json())
     //   .then((json) => setData(json));
 
-    const fecthData = async () => {
+    //const fecthData = async () => {
+//try{
       const res = await fetch(`https://jsonplaceholder.typicode.com/users`);
       const json = await res.json();
       setData(json);
     //   console.log(json)
-    };
+    };}catch (error){
+setError(true)}
+
     fecthData();
 
-//    try{
+
 //      fetch("https://jsonplaceholder.typicode.com/photos")
 //        .then((response) => response.json())
 //       .then((json) => setData(json));
@@ -30,7 +33,7 @@ const[id,setId]=useState("")
 //    }
 console.log("useEffect Run")
 
-  }, [id]);
+  }, []);
 
 const searchHandler=async()=>{
  const res = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`);
@@ -41,7 +44,7 @@ const searchHandler=async()=>{
 
   return (
     <div>
-      {/* {!data.length && <h1>Loading...</h1>} */}
+      {/* {!data.length && !error && <h1>Loading...</h1>} */}
       <h3>User</h3>
       <input type="text" value={id} onChange={e=>setId(e.target.value)} />
       <button onClick={searchHandler}>Search</button>
